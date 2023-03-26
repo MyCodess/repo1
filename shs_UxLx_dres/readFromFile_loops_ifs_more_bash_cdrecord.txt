@@ -1,0 +1,66 @@
+
+--- from:  file:///W/Docs/Linux/HowTOs/htmls_howto/CD-Writing-HOWTO.html
+CD-Writing HOWTO
+Winfried Trümper <winni@xpilot.org>
+v2.9.3, 23 July 2000
+
+-----------------------------------------------------------
+4.15 Where to store the local configuration permanently?
+
+You have two options. Either you use the built-in configuration file for cdrecord, or you use a shell wrapper like the one shown below. This shell script reads a configuration file, which lists the options and parameters for cdrecord line by line. The names are exactly the same as on the command line, but without the leading dash. Comments are allowed. Example:
+
+# be verbose
+v
+# set the speed of the writer
+speed=2
+# the device-coordinates in the form BUS,ID,LUN
+dev=0,6,0
+
+The configuration files for the wrapper belong into /etc/cdrecord/ and must be referenced on the command line. Example: if you want to refer to the configuration /etc/cdrecord/mywriter.cfg, then you can issue the command "cdrecord.sh mywriter.cfg -audio track1...". Everything after mywrite.cfg is passed to cdrecord.
+
+#! /bin/bash
+
+CFGDIR="/etc/cdrecord"
+
+CFG="$1"
+shift
+ARGS_LEFT="$@"
+
+if [ ! -f "$CFGDIR/$CFG" ]
+then
+    echo "Configuration file $CFGDIR/$CFG not found. Exiting."
+    exit 1
+fi
+
+while read LINE
+do
+    case $LINE in
+        \#*|"") continue;;
+    esac
+    old_IFS="$IFS"
+    IFS="$IFS="
+    set -- $LINE
+    IFS="$old_IFS"
+    O_NAME="$1"
+    O_VALUE=""
+    while shift
+    do
+        case $1 in
+            "") continue;;
+        esac
+        O_VALUE="$1"
+    done
+
+    if [ -z "$O_VALUE" ]
+    then
+        O_CDRECORD="$O_CDRECORD -$O_NAME "
+        continue
+    fi
+    O_CDRECORD="$O_CDRECORD $O_NAME=$O_VALUE "
+    
+done < "$CFGDIR/$CFG"
+
+set -x    #DEBUG
+exec cdrecord $O_CDRECORD $ARGS_LEFT
+echo "Execution of cdrecord failed."
+

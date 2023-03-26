@@ -1,0 +1,946 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Unmounting external USB drives in Ubuntu 9.04 &laquo; Sergei&#8217;s blog on bugs, penguins and stuff</title>
+
+
+<link rel="stylesheet" href="http://s2.wp.com/wp-content/themes/pub/dusk/style.css?m=1274400606g" type="text/css" media="screen" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://ssergeje.wordpress.com/feed/" />
+
+<link rel="pingback" href="http://ssergeje.wordpress.com/xmlrpc.php" />
+
+	<link rel='archives' title='April 2010' href='http://ssergeje.wordpress.com/2010/04/' />
+	<link rel='archives' title='October 2009' href='http://ssergeje.wordpress.com/2009/10/' />
+	<link rel='archives' title='August 2009' href='http://ssergeje.wordpress.com/2009/08/' />
+	<link rel='archives' title='January 2009' href='http://ssergeje.wordpress.com/2009/01/' />
+	<link rel='archives' title='November 2008' href='http://ssergeje.wordpress.com/2008/11/' />
+	<link rel='archives' title='October 2008' href='http://ssergeje.wordpress.com/2008/10/' />
+	<link rel='archives' title='September 2008' href='http://ssergeje.wordpress.com/2008/09/' />
+	<link rel='archives' title='August 2008' href='http://ssergeje.wordpress.com/2008/08/' />
+	<link rel='archives' title='July 2008' href='http://ssergeje.wordpress.com/2008/07/' />
+	<link rel='archives' title='April 2008' href='http://ssergeje.wordpress.com/2008/04/' />
+	<link rel='archives' title='February 2007' href='http://ssergeje.wordpress.com/2007/02/' />
+	<link rel='archives' title='January 2007' href='http://ssergeje.wordpress.com/2007/01/' />
+	<link rel='archives' title='December 2006' href='http://ssergeje.wordpress.com/2006/12/' />
+	<link rel='archives' title='September 2006' href='http://ssergeje.wordpress.com/2006/09/' />
+	<link rel='archives' title='August 2006' href='http://ssergeje.wordpress.com/2006/08/' />
+	<link rel='archives' title='April 2006' href='http://ssergeje.wordpress.com/2006/04/' />
+<link rel="alternate" type="application/rss+xml" title="Sergei&#039;s blog on bugs, penguins and stuff &raquo; Unmounting external USB drives in Ubuntu&nbsp;9.04 Comments Feed" href="http://ssergeje.wordpress.com/2009/08/11/unmounting-external-usb-drives-in-ubuntu/feed/" />
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" href="http://s0.wp.com/wp-content/themes/h4/global.css?m=1256671583g" type="text/css" />
+<script type='text/javascript' src='http://s0.wp.com/wp-includes/js/comment-reply.js?m=1235111581g&amp;ver=20090102'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://ssergeje.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://ssergeje.wordpress.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='Sergei&#8217;s blog on bugs, penguins and stuff' href='http://ssergeje.wordpress.com/' />
+<link rel='prev' title='С Новым&nbsp;Годом!' href='http://ssergeje.wordpress.com/2009/01/10/s-novym-godom/' />
+<link rel='next' title='Estonian e-election&#8230; and&nbsp;penguins' href='http://ssergeje.wordpress.com/2009/10/14/estonian-e-election-and-penguins/' />
+<meta name="generator" content="WordPress.com" />
+<link rel='canonical' href='http://ssergeje.wordpress.com/2009/08/11/unmounting-external-usb-drives-in-ubuntu/' />
+<link rel='shortlink' href='http://wp.me/pPtw-2J' />
+<link rel="shortcut icon" type="image/x-icon" href="http://1.gravatar.com/blavatar/7a0fc65c6f962a633cbf6d04e72793a6?s=16&#038;d=http://s2.wp.com/i/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="http://1.gravatar.com/blavatar/7a0fc65c6f962a633cbf6d04e72793a6?s=16&#038;d=http://s2.wp.com/i/favicon.ico" />
+<link rel="apple-touch-icon" href="http://1.gravatar.com/blavatar/9abe68b472dde62fc9fa6a5ca2332aa1?s=158&#038;d=http://s0.wp.com/wp-content/themes/h4/i/webclip.png" />
+	<style type="text/css">
+				div#likes { margin-top: 15px; }
+		.like-button { border: 1px solid #eee; padding: 2px 6px; font-size: 13px; font-family: arial, tahoma, sans-serif; }
+		#wpl-likebox { clear: left; font-size: 11px; font-family: arial, tahoma, verdana, sans-serif !important; min-height: 30px; margin: 10px 0 !important; padding: 5px 0 10px 0 !important; }
+		#wpl-button { float: left; background: url( /i/buttonbg.png ) top left repeat-x; margin-right: 7px; border: 1px solid #d4d4d4; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+		#wpl-button a { color: #666 !important; line-height: 130% !important; text-decoration: none !important; outline: none; float: left; padding: 3px 6px 2px 24px !important; font-size: 11px !important; background: url( /i/likestar.png ) 6px 49.8% no-repeat; }
+		#wpl-button.liked { background: #feffce; border: 1px solid #f3e389; }
+		#wpl-button.liked a { color: #ba871b !important; }
+		#wpl-likebox #wpl-count { min-height: 25px; line-height: 130% !important; float: left; padding-top: 4px; }
+		#wpl-likebox #wpl-avatars { clear: left; max-height: 98px; overflow: hidden; margin-top: 15px; line-height: 130% !important; }
+		#wpl-likebox #wpl-avatars img { border: none !important; }
+	</style>
+	<link rel='openid.server' href='http://ssergeje.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='http://ssergeje.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://ssergeje.wordpress.com/osd.xml" title="Sergei&#039;s blog on bugs, penguins and stuff" />
+<script type="text/javascript"> 
+	window.google_analytics_uacct = "UA-52447-2"; 
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'wordpress.com']);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script>
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+	<div id="header">
+		<div id="title">
+			<h1><a href="http://ssergeje.wordpress.com">Sergei&#8217;s blog on bugs, penguins and stuff</a></h1>
+		</div>
+	</div>
+	
+	<div id="content">
+
+			
+						
+			<div class="post-169 post type-post hentry category-uncategorized tag-bugs tag-linux tag-open-source tag-ubuntu" id="post-169">
+				<h2 class="posttitle"><a href="http://ssergeje.wordpress.com/2009/08/11/unmounting-external-usb-drives-in-ubuntu/" title="Permanent link to Unmounting external USB drives in Ubuntu&nbsp;9.04">Unmounting external USB drives in Ubuntu&nbsp;9.04</a></h2>
+				<p class="commentmeta">
+					2009/08/11 at 3:29 
+					(<a href="http://ssergeje.wordpress.com/category/uncategorized/" title="View all posts in Uncategorized" rel="category tag">Uncategorized</a>)
+					 (<a href="http://en.wordpress.com/tag/bugs/" rel="tag">bugs</a>, <a href="http://en.wordpress.com/tag/linux/" rel="tag">linux</a>, <a href="http://en.wordpress.com/tag/open-source/" rel="tag">open source</a>, <a href="http://en.wordpress.com/tag/ubuntu/" rel="tag">ubuntu</a>) 									</p>
+				<script type="text/javascript" src="http://s0.wp.com/wp-content/plugins/adverts/adsense.js?m=1253160243g&amp;1"></script><p><strong>UPDATE root issue discussed below was fixed in Ubuntu 9.10 &#8211; unmounting and spinning down the drive <em>works just fine</em> from GUI</strong></p>
+<p>As some people know there are problems with correct unplugging of external USB hard drives on linux, Ubuntu in particular. The problem is that <em>none</em> of graphical managers support drive spindown when unmounting/ejecting the external hard drive. This can cause <strong><em>severe damage</em></strong> to HDD.</p>
+<p>There&#8217;s an <a href="https://bugs.launchpad.net/ubuntu/+bug/117713" target="_blank">old bug</a> in LP for that. The summary is that you can use a <a href="https://bugs.launchpad.net/ubuntu/+bug/117713/comments/7" target="_blank">script</a> by Clem-Vangelis and Dave Rosky to do the work. Later <a href="https://bugs.launchpad.net/ubuntu/+bug/117713/comments/43" target="_blank">someone</a> posted a link to <a href="http://elliotli.blogspot.com/2009/01/safely-remove-usb-hard-drive-in-linux.html" target="_blank">scipt</a> by Yan Li, which does even some more stuff.</p>
+<p>But since Ubuntu 9.04 those scripts have stopped working &#8211; the drive kept spinning. Googling around I found a <a href="https://bugs.launchpad.net/ubuntu/+source/hdparm/+bug/388506" target="_blank">similar problem</a> and found out the problem was in udev rules. There was a manul solution in comments of LP bug #388506 mentioning udev rules editing: in ubuntu 9.04 I needed to copy the <code>60-persistent-storage.rules</code> file, modify <code>ACTION!="add|change"</code> to <code>ACTION!="add"</code>. This way the scripts worked. Somehow when this rule is present my home partition couldn&#8217;t be mounted. So this rules file must be removed after external drive unmount.</p>
+<p>To make things easier I merged the scripts by Clem-Vangelis,  Dave Rosky and Yan Li, updated it with udev rules workaround and done some other things. The script is as follows:</p>
+<p><span id="more-169"></span></p>
+<pre>#!/bin/bash
+#
+#  suspend-usb-device: an easy-to-use script to properly put an USB
+#  device into suspend mode that can then be unplugged safely
+#
+#  Copyright (C) 2009, Yan Li elliot.li.tech@gmail.com
+#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see http://www.gnu.org/licenses/.
+#
+#  To reach the auther, please write an email to the address as stated
+#  above.
+
+#  ACKNOWLEDGEMENTS:
+#      Christian Schmitt chris@ilovelinux.de for firewire supporting
+#      David d.tonhofer@m-plify.com for improving parent device
+#      search and verbose output message
+#
+#  CHANGELOG:
+#  v2 11 Aug 2009 by Sergei Sergejev http://ssergeje.wordpress.com
+#   * using predefined mountpoint instead of device drive name from parameters
+#   * checking if sdparm is installed (bu default it's not)
+#   * added unmount command from the script by Clem-Vangelis and D. Rosky
+#   * created dynamic logic to process both mounted and unmounted drives
+#   * some validation for the input
+#   * updated for ubuntu 9.04 to overcome udev rule conflict
+#   
+
+# change this to match your drive's mountpoint
+MOUNTPOINT='/media/wd'
+
+usage()
+{
+    cat&lt;&lt;EOF
+suspend-usb-device  Copyright (C) 2009  Yan Li elliot.li.tech@gmail.com
+
+This script is designed to properly put an USB device into suspend
+mode that can then be unplugged safely. It sends a SYNCHRONIZE CACHE
+command followed by a START-STOP command (if the device supports it),
+unbinds the device from the driver and then suspends the USB
+port. After that you can disconnect your USB device safely.
+
+NB!
+Before using this script set correct mountpoint.
+In file manager (Nautilus) right click on the drive
+and put 'Location' and 'Volume' together.
+Volume is usually the name of the drive assigned during file system format
+
+usage:
+$0 [options]
+
+options:
+  -l     show the device and USB bus ID only
+  -h     print this usage
+  -v     verbose
+
+This program comes with ABSOLUTELY NO WARRANTY.  This is free
+software, and you are welcome to redistribute it under certain
+conditions; for details please read the licese at the beginning of the
+source code file.
+EOF
+}
+
+set -e -u
+
+SHOW_DEVICE_ONLY=0
+VERBOSE=0
+while getopts "vlh" opt; do
+    case "$opt" in
+        h)
+            usage
+            exit 2
+            ;;
+        l)
+            SHOW_DEVICE_ONLY=1
+            ;;
+        v)
+            VERBOSE=1
+            ;;
+        ?)
+            echo
+            usage
+            exit 2
+            ;;
+    esac
+done
+
+if which sdparm &gt;/dev/null; then
+    echo ""
+else
+    echo "sdparm is not present. Install it by running sudo apt-get install sdparm"
+fi
+
+# root check
+if [ `id -u` -ne 0 ]; then
+    1&gt;&amp;2 echo error, must be run as root, exiting...
+    exit 1
+fi
+
+# See if drive is mounted
+
+CCOUNT=$(grep $MOUNTPOINT /etc/mtab | wc -c)
+if [ $CCOUNT -eq 0 ]; then
+  echo "No mountpoint $MOUNTPOINT. It is most likely you unmounted the drive"
+  echo ""
+  echo "Do you want to continue and try to suspend the device anyway? y/n"
+  read ANSWER
+  if [ $ANSWER = "Y" ] || [ $ANSWER = "y" ]; then
+   echo "Plese give drive name eg /dev/sdb"
+   read DEV_NAME
+   if [ -b $DEV_NAME ]; then
+     echo "Will try to suspend device $DEV_NAME"
+   else
+     echo "no such drive. Find out the drive name and run the script again"
+     exit 1
+   fi
+  else
+   echo "exiting"
+   exit 1
+  fi
+else
+  #Get the physical device from mtab
+  DRIVELINE=$(grep $MOUNTPOINT /etc/mtab)
+  LENG=$(expr match "$DRIVELINE" '[A-Za-z0-9\/]*')
+  DEV_NAME=$(expr substr "$DRIVELINE" 1 $LENG) 
+
+  #Try Unmounting the drive
+  echo "unmounting $MOUNTPOINT"
+  umount $MOUNTPOINT
+  sleep 3
+  CCOUNT=$(grep $MOUNTPOINT /etc/mtab | wc -c)
+  if [ $CCOUNT -ne 0 ]
+  then
+   echo "Could not unmount $MOUNTPOINT, drive may be in use."
+   echo "Verify all files and programs that may use the drive are closed"
+   echo "and run the script again"
+   exit 1
+  fi
+fi
+
+# looking for the parent of the device with type "usb-storage:usb", it
+# is the grand-parent device of the SCSI host, and it's devpath is
+# like
+# /devices/pci0000:00/0000:00:1d.7/usb5/5-8 (or /fw5/fw5-8 for firewire devices)
+
+# without an USB hub, the device path looks like:
+# /devices/pci0000:00/0000:00:1d.7/usb2/2-1/2-1:1.0/host5/target5:0:0/5:0:0:0
+# here the grand-parent of host5 is 2-1
+
+# when there's a USB HUB, the device path is like:
+# /devices/pci0000:00/0000:00:1d.0/usb5/5-2/5-2.2/5-2.2:1.0/host4/target4:0:0/4:0:0:0
+# and the grand-parent of host4 is 5-2.2
+
+DEVICE=$(udevadm info --query=path --name=${DEV_NAME} --attribute-walk | \
+    egrep "looking at parent device" | head -1 | \
+    sed -e "s/.*looking at parent device '\(\/devices\/.*\)\/.*\/host.*/\1/g")
+
+if [ -z $DEVICE ]; then
+    1&gt;&amp;2 echo "cannot find appropriate parent USB/Firewire device, "
+    1&gt;&amp;2 echo "perhaps ${DEV_NAME} is not an USB/Firewire device?"
+    exit 1
+fi
+
+# the trailing basename of ${DEVICE} is DEV_BUS_ID ("5-8" in the
+# sample above)
+DEV_BUS_ID=${DEVICE##*/}
+
+[[ $VERBOSE == 1 ]] &amp;&amp; echo "Found device $DEVICE associated to $DEV_NAME; USB bus id is $DEV_BUS_ID"
+
+if [ ${SHOW_DEVICE_ONLY} -eq 1 ]; then
+    echo Device: ${DEVICE}
+    echo Bus ID: ${DEV_BUS_ID}
+    exit 0
+fi
+
+# hack for ubuntu 9.04 to overcome the udev rules
+# please note that leaving this rule may leave your home folder unmountable
+# if this happens remove the rule (sudo rm /etc/udev/rules.d/60-persistent-storage.rules) and reboot
+RULE_BEFORE="ACTION!=\"add|change\", GOTO=\"persistent_storage_end\""
+RULE_AFTER="ACTION!=\"add\", GOTO=\"persistent_storage_end\""
+sed "s/$RULE_BEFORE/$RULE_AFTER/" /lib/udev/rules.d/60-persistent-storage.rules &gt;&gt; /etc/udev/rules.d/60-persistent-storage.rules
+
+# flush all buffers
+sync
+
+# send SCSI sync command, some devices don't support this so we just
+# ignore errors with "|| true"
+[[ $VERBOSE == 1 ]] &amp;&amp; echo "Syncing device $DEV_NAME"
+sdparm --command=sync "$DEV_NAME" &gt;/dev/null || true
+# send SCSI stop command
+[[ $VERBOSE == 1 ]] &amp;&amp; echo "Stopping device $DEV_NAME"
+sdparm --command=stop "$DEV_NAME" &gt;/dev/null
+
+# unbind it; if this yields "no such device", we are trying to unbind the wrong device
+[[ $VERBOSE == 1 ]] &amp;&amp; echo "Unbinding device $DEV_BUS_ID"
+if [[ "${DEV_BUS_ID}" == fw* ]]
+then
+    echo -n "${DEV_BUS_ID}" &gt; /sys/bus/firewire/drivers/sbp2/unbind
+else
+    echo -n "${DEV_BUS_ID}" &gt; /sys/bus/usb/drivers/usb/unbind
+
+    # suspend it if it's an USB device (we have no way to suspend a
+    # firewire device yet)
+
+    # check if CONFIG_USB_SUSPEND is enabled
+    [[ $VERBOSE == 1 ]] &amp;&amp; echo "Checking whether $DEVICE can be suspended"
+    POWER_LEVEL_FILE=/sys${DEVICE}/power/level
+    if [ ! -f "$POWER_LEVEL_FILE" ]; then
+        1&gt;&amp;2 cat&lt;&lt;EOF
+It's safe to remove the USB device now but better can be done. The
+power level control file $POWER_LEVEL_FILE
+doesn't exist on the system so I have no way to put the USB device
+into suspend mode, perhaps you don't have CONFIG_USB_SUSPEND enabled
+in your running kernel.
+
+Read
+
+http://elliotli.blogspot.com/2009/01/safely-remove-usb-hard-drive-in-linux.html
+
+for an detailed explanation.
+EOF
+        exit 3
+    fi
+
+    [[ $VERBOSE == 1 ]] &amp;&amp; echo "Suspending $DEVICE by writing to $POWER_LEVEL_FILE"
+    echo 'suspend' &gt; "$POWER_LEVEL_FILE"
+fi
+
+if [ -s /etc/udev/rules.d/60-persistent-storage.rules ]; then
+  echo "removing temporary udev rule"
+  rm /etc/udev/rules.d/60-persistent-storage.rules
+else
+  "temporary udev rule file not found... something went wrong"
+fi
+
+echo ""
+echo "Drive can be safely unplugged"</pre>
+<p>To use the script</p>
+<ol>
+<li>copy it contents to a text file. Name it <em>unmountwd</em> (for example)</li>
+<li>put the correct mountpoint in the beginning of the script</li>
+<li>make it executable: right click on it in file manager, go to &#8216;<em>Permissions</em>&#8216; tab, tick &#8216;<em>Allow executing</em>&#8216; or run <code>chmod +x</code> in terminal</li>
+<li>move the file to <code>/usr/bin</code></li>
+<li>enjoy it by calling from a terminal <code>sudo unmountwd</code></li>
+<li>push Gnome, KDE, XFCE developers to develop proper external drive unmount in file managers</li>
+</ol>
+<p><strong>Update</strong>: some drives are still not spinned down correctly &#8211; there was one issue in Launchpad and one in the comments by Sap. In both cases the drive didn&#8217;t do so both on Windows and Mac too. This a <em>hardware</em>, not software issue.</p>
+<p>You are welcome to comment and fix/post bugs (if any) <img src='http://s.wordpress.com/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+
+<!--adcode-->
+<div align="center" style="padding-top: 5px; text-align: left;" class="adcode">
+<script type="text/javascript"><!--
+google_ad_client = "pub-3443918307802676";
+google_ad_output = "js";
+google_feedback = "on";
+google_max_num_ads = "4";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_image_size = "336x280";
+google_ad_type = "text,flash,html";
+google_ad_channel ="7770228814+6875057225+7401333398+7453468586+2794543176";
+var color_bg = 'eeeae8';
+var color_text = '000000';
+var color_link = '497ca7';
+var color_border = 'eeeae8';
+var color_url = '497ca7';
+
+google_analytics_domain_name = "wordpress.com";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+<div style="clear: both"><br /></div>
+<!--/adcode-->
+							</div>
+			
+				<h3 id="comments">27 Comments</h3>
+
+	<ol id="commentlist">
+		<li class="" id="comment-197">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/7aecb4b4bd2a2aad9e6b4f05e8504b66?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Yan Li</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/08/11 at <a href="#comment-197" title="Permanent link to this comment">9:01</a> </p>
+		<div id="div-comment-197">
+			<p>Thanks for the research and improvement.</p>
+<p>According to <a href="https://bugs.launchpad.net/ubuntu/+source/hdparm/+bug/388506" rel="nofollow">https://bugs.launchpad.net/ubuntu/+source/hdparm/+bug/388506</a> , a new hdparm has a fix. Have you tried that?</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=197#respond' onclick='return addComment.moveForm("div-comment-197", "197", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-198">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/2b06302da3e14df9b89505ee0935dfbe?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://ssergeje.wordpress.com/' rel='external nofollow' class='url'>Sergei Sergejev</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/08/11 at <a href="#comment-198" title="Permanent link to this comment">10:07</a> </p>
+		<div id="div-comment-198">
+			<p>If I&#8217;m not mistaken, then hdparm is not suitable for me: both PCs I have by hand use SATA drives and hdparm is for ATA ones.</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=198#respond' onclick='return addComment.moveForm("div-comment-198", "198", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+</ul>
+</li>
+	<li class="" id="comment-199">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/08f3234049f9179bf295c93ae999f743?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Revan</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/08/11 at <a href="#comment-199" title="Permanent link to this comment">14:35</a> </p>
+		<div id="div-comment-199">
+			<p>&#8221;   6. push Gnome, KDE, XFCE developers to develop proper external drive unmount in file managers&#8221;</p>
+<p>&gt;&gt;&gt; I think it should be properly well integrated upstream&#8230;It is not a desktop environment stuff&#8230;</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=199#respond' onclick='return addComment.moveForm("div-comment-199", "199", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+	<li class="" id="comment-200">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/4a1d9c8f1cca2735c876fb77d6c29003?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Insaan</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/08/16 at <a href="#comment-200" title="Permanent link to this comment">2:08</a> </p>
+		<div id="div-comment-200">
+			<p>Works great.</p>
+<p>Thanks.</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=200#respond' onclick='return addComment.moveForm("div-comment-200", "200", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+	<li class="" id="comment-201">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/db0a4a36da2d68470f87928dc4bdca6f?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Trey</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/08/26 at <a href="#comment-201" title="Permanent link to this comment">22:21</a> </p>
+		<div id="div-comment-201">
+			<p>Thanks a lot for this!</p>
+<p>I actually changed line 40 to read &#8220;MOUNTPOINT=$1&#8243; so that I could pass the mount point at the time of command since I use a couple drives with custom mount points</p>
+<p>now I run &#8220;sudo ~/bin/nameofscript /media/wd320&#8243;</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=201#respond' onclick='return addComment.moveForm("div-comment-201", "201", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-202">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/2b06302da3e14df9b89505ee0935dfbe?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://ssergeje.wordpress.com/' rel='external nofollow' class='url'>Sergei Sergejev</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/08/27 at <a href="#comment-202" title="Permanent link to this comment">13:03</a> </p>
+		<div id="div-comment-202">
+			<p>That is how the original script worked. Glad it helped <img src='http://s.wordpress.com/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=202#respond' onclick='return addComment.moveForm("div-comment-202", "202", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+</ul>
+</li>
+	<li class="" id="comment-206">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/413a569ac58d3a376ebcb2759f8ca399?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Brian</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/09/04 at <a href="#comment-206" title="Permanent link to this comment">19:32</a> </p>
+		<div id="div-comment-206">
+			<p>Thanks a lot for the script.  I think it is working, though I am not sure. Should the device power down as well? The USB light is still on, but the drive does spin down. I&#8217;m running 9.04 as well, with a WD Passport.  I don&#8217;t have a windows machine, so not sure what it is normally supposed to do.  Thanks!</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=206#respond' onclick='return addComment.moveForm("div-comment-206", "206", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-207">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/2b06302da3e14df9b89505ee0935dfbe?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://ssergeje.wordpress.com/' rel='external nofollow' class='url'>Sergei Sergejev</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/09/04 at <a href="#comment-207" title="Permanent link to this comment">22:52</a> </p>
+		<div id="div-comment-207">
+			<p>I have the same drive and blue led is on after the script is executed. Originally drive and led should be powered off. I believe it&#8217;s enough if the drive did spin down <img src='http://s.wordpress.com/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=207#respond' onclick='return addComment.moveForm("div-comment-207", "207", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-208">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/413a569ac58d3a376ebcb2759f8ca399?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Brian</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/09/04 at <a href="#comment-208" title="Permanent link to this comment">23:28</a> </p>
+		<div id="div-comment-208">
+			<p>Cool.  In that case, thanks a lot for the script <img src='http://s.wordpress.com/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+		<div class="reply">
+					</div>
+		</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+	<li class="" id="comment-209">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/f2fe4103ff0ddcd5397ca3df1286dc99?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Sap</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/09/10 at <a href="#comment-209" title="Permanent link to this comment">21:12</a> </p>
+		<div id="div-comment-209">
+			<p>Hello</p>
+<p>I&#8217;ve been trying all sort of techniques to spin down my external usb hard drive without any success. My trials included utilities like sg3-utils,  scsiadd,  hdparm,  sdparm,  sg_start,  umount,  eject and  Yan Li&#8217;s and your scripts. </p>
+<p>All of them have failed to get my drive to spin down. The maximum I&#8217;ve got working with your script is that the  usb-light turns off but the hard drive still keeps spinning,  which results in the typical emergency-park &#8216;click&#8217; sound. </p>
+<p>I&#8217;d appreciate any help in this regard. I&#8217;m running Xubuntu 9.04 on a  Dell D600 laptop and my external hdd is a 100GB Fujitsu laptop one (sata) for which I&#8217;m using a generic external usb-enclosure.</p>
+<p>Thanks.</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=209#respond' onclick='return addComment.moveForm("div-comment-209", "209", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+	<li class="" id="comment-213">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/035caad73317e0b20132e4bf3fcddbcd?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">FornaF</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/10/03 at <a href="#comment-213" title="Permanent link to this comment">0:09</a> </p>
+		<div id="div-comment-213">
+			<p>My system has an external USB WD MyBook Essential (1Tb).<br />
+When I first tried this script (very nice) to stop it I had the same problem of Sap: disk light was still on after script completion.<br />
+I tried to ececute by hand all the command script do&#8230; I was surprised that in this case the disk was correctly stopped.<br />
+After some more tests I found this behaviour on my USB disk: when the commands &#8220;sdparm &#8211;command=sync&#8221; and &#8220;sdparm &#8211;command=stop&#8221; are sent to the device, sdparam immediately return to unix prompt but the disk lignt flashes for some seconds (6-12&#8243; for sync command and 5&#8243; for stop).<br />
+I inserted in the script a copule of sleep just after these two commands of 20 and 10 seconsds and now it switch off correctly all my USB devices.<br />
+Sleep in procedures is not a nice solution. If someone have an idea of how to check when disk has completed the command this will make a perfect solution.</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=213#respond' onclick='return addComment.moveForm("div-comment-213", "213", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+	<li class="" id="comment-214">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/7aecb4b4bd2a2aad9e6b4f05e8504b66?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Yan Li</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/10/04 at <a href="#comment-214" title="Permanent link to this comment">4:20</a> </p>
+		<div id="div-comment-214">
+			<p>To FornaF, good catch! That sounds interesting&#8230; Let me try it on my MyBook.</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=214#respond' onclick='return addComment.moveForm("div-comment-214", "214", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+	<li class="" id="comment-215">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/e23eec47a74c1227c4e4bd8dd298e7f0?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Christoph S</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/10/07 at <a href="#comment-215" title="Permanent link to this comment">6:08</a> </p>
+		<div id="div-comment-215">
+			<p>Dear Sergei, </p>
+<p>I would like to thank you as well, but being a newbie (to Ubuntu (running 9,04), to Linux) this is rather challenging for me&#8230; please delete my post if you think I am polluting your page. I am hoping this may help others in the same boat, as this should be a common functionality for an operating system&#8230; in my opinion. </p>
+<p>I followed your instructions, was able to do #1&#8230;<br />
+#2 also I think, I changed the line to &#8221;   MOUNTPOINT=&#8217;/media/My Passport&#8217;   &#8221;<br />
+#3 OK<br />
+#4 was difficult, as I could not drag and drop the file in the location you are instructing. Instead, I found the command &#8221;   gksudo nautilus   &#8221;<br />
+This opened another Terminal window, and I was able to move the file. </p>
+<p>I am stuck with #5; here is the return from Terminal:</p>
+<p>christoph@christoph-laptop:~$ sudo unmountwd<br />
+[sudo] password for christoph:<br />
+sdparm is not present. Install it by running sudo apt-get install sdparm<br />
+grep: Passport: No such file or directory<br />
+No mountpoint /media/My Passport. It is most likely you unmounted the drive</p>
+<p>Do you want to continue and try to suspend the device anyway? y/n<br />
+y<br />
+Plese give drive name eg /dev/sdb<br />
+/dev/sdbb<br />
+no such drive. Find out the drive name and run the script again</p>
+<p>How do you find out the drive name? I tried &#8221;   /dev/sdbb   &#8221; but obviously that didn&#8217;t work.<br />
+I figured out that sdparm was missing and tried to install it:</p>
+<p>christoph@christoph-laptop:~$ sudo apt-get install sdparm<br />
+Reading package lists&#8230; Done<br />
+Building dependency tree<br />
+Reading state information&#8230; Done<br />
+The following packages will be REMOVED:<br />
+  dcp8020lpr<br />
+The following NEW packages will be installed:<br />
+  sdparm<br />
+0 upgraded, 1 newly installed, 1 to remove and 3 not upgraded.<br />
+1 not fully installed or removed.<br />
+Need to get 116kB of archives.<br />
+After this operation, 381kB of additional disk space will be used.<br />
+Do you want to continue [Y/n]? Y<br />
+Get:1 <a href="http://us.archive.ubuntu.com" rel="nofollow">http://us.archive.ubuntu.com</a> jaunty/universe sdparm 1.02-1 [116kB]<br />
+Fetched 116kB in 1s (97.1kB/s)<br />
+(Reading database &#8230; 129079 files and directories currently installed.)<br />
+Removing dcp8020lpr &#8230;<br />
+/var/lib/dpkg/info/dcp8020lpr.postrm: 3: /etc/init.d/lpd: not found<br />
+dpkg: error processing dcp8020lpr (&#8211;remove):<br />
+ subprocess post-removal script returned error exit status 127<br />
+Errors were encountered while processing:<br />
+ dcp8020lpr<br />
+E: Sub-process /usr/bin/dpkg returned an error code (1)</p>
+<p>&#8230;..<br />
+Didn&#8217;t know what to do then.<br />
+I tried System/Administration/Synaptic Package Manager, looked for sdparm, found it, but could not install it (a bunch of error messages that were Chinese to me). </p>
+<p>Probably, the fix is very simple&#8230;. but I&#8217;m still learning and this is too challenging for me.<br />
+Anyone want to help??!<br />
+Not sure this is needed, but I am running 9.04, Toshiba Tecra A10, and WD Passport 320GB.<br />
+Thanks a lot, and I&#8217;ll post again (results?) if I get some help!<br />
+Christoph</p>
+<p>PS: in the meantime, I just unplug the hard drive &#8220;hot&#8221;&#8230; not great.</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=215#respond' onclick='return addComment.moveForm("div-comment-215", "215", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-217">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/2b06302da3e14df9b89505ee0935dfbe?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://ssergeje.wordpress.com/' rel='external nofollow' class='url'>Sergei Sergejev</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/10/08 at <a href="#comment-217" title="Permanent link to this comment">0:56</a> </p>
+		<div id="div-comment-217">
+			<p>&gt;as this should be a common functionality for an operating system<br />
+it’s sure must be</p>
+<p>/dev/sdbb is incorrect drive name. It consists only of 3 letters as far as I know</p>
+<p>Please plugin your drive and tell me the name of the drive icon on the desktop that will appear</p>
+<p>then open a terminal and run this<br />
+ls /dev | grep sd</p>
+<p>and then<br />
+ls /dev | grep hd</p>
+<p>Please post the results here or mail them <a href="mailto:ssergeje1@gmail.com">ssergeje1@gmail.com</a><br />
+Then I will know if you use SATA or ATA drive. Knowing this I’ll be able to give further instructions. Be sure to back-up most valuable information and don’t forget at least to unmount the drive in GUI from the desktop (right click the drive icon)</p>
+<p>To fix the package manager (apt) run<br />
+sudo apt-get install -f</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=217#respond' onclick='return addComment.moveForm("div-comment-217", "217", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-218">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/e23eec47a74c1227c4e4bd8dd298e7f0?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Christoph S</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/10/09 at <a href="#comment-218" title="Permanent link to this comment">5:17</a> </p>
+		<div id="div-comment-218">
+			<p>Hello Sergei,<br />
+Thank you for taking the time to help me out. </p>
+<p>Here&#8217;s the name of my drive, once plugged in: &#8220;My Passport&#8221;</p>
+<p>Here is the Terminal output after both commands: </p>
+<p>christoph@christoph-laptop:~$ ls /dev | grep sd<br />
+sda<br />
+sda1<br />
+sda2<br />
+sda5<br />
+sdb<br />
+sdb1<br />
+christoph@christoph-laptop:~$ ls /dev | grep hd<br />
+watchdog<br />
+christoph@christoph-laptop:~$ </p>
+<p>As for the package manager errors, I&#8217;ll try to fix it myself as I believe this is a separate issue and doesn&#8217;t belong here. &#8220;sudo apt-get install -f&#8221; still returns errors. </p>
+<p>Christoph</p>
+		<div class="reply">
+					</div>
+		</div>
+</li>
+</ul>
+</li>
+	<li class="" id="comment-232">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/2b06302da3e14df9b89505ee0935dfbe?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://ssergeje.wordpress.com/' rel='external nofollow' class='url'>Sergei Sergejev</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/11/03 at <a href="#comment-232" title="Permanent link to this comment">11:38</a> </p>
+		<div id="div-comment-232">
+			<p>@Christoph S</p>
+<p>Blind me <img src='http://s.wordpress.com/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' />  You use different quotes in MOUNTPOINT. You should use<br />
+MOUNTPOINT=’/media/My Passport’</p>
+<p>Note that you used ´ instead of ‘, these are different things. If above doesn’t help, try to use MOUNTPOINT=’/media/My\ Passport’</p>
+<p>And FYI your drive name is /dev/sdb</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=232#respond' onclick='return addComment.moveForm("div-comment-232", "232", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+</ul>
+</li>
+	<li class="" id="comment-222">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/56a04f7a27a2777c0cf8f42786c595e3?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://www.jamescostian.com' rel='external nofollow' class='url'>James Costian</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/11/01 at <a href="#comment-222" title="Permanent link to this comment">0:49</a> </p>
+		<div id="div-comment-222">
+			<p>Sorry for the newbie question, but will this work on Ubuntu 9.10? I&#8217;m planning on buying a WD My Passport for Christmas, and I want to use this drive for my computer (that runs 9.10). I have made the script and uploaded it to <a href="http://dl.getdropbox.com/u/1928926/unmountwd" rel="nofollow">http://dl.getdropbox.com/u/1928926/unmountwd</a></p>
+<p>Changes I made:<br />
+1) added some text to the begining (comments)<br />
+2) added some sleep commands to one part so it looks like this:<br />
+# send SCSI sync command, some devices don&#8217;t support this so we just<br />
+# ignore errors with &#8220;|| true&#8221;<br />
+[[ $VERBOSE == 1 ]] &amp;&amp; echo &#8220;Syncing device $DEV_NAME&#8221;<br />
+sdparm &#8211;command=sync &#8220;$DEV_NAME&#8221; &gt;/dev/null || true<br />
+sleep 12<br />
+# send SCSI stop command<br />
+[[ $VERBOSE == 1 ]] &amp;&amp; echo &#8220;Stopping device $DEV_NAME&#8221;<br />
+sdparm &#8211;command=stop &#8220;$DEV_NAME&#8221; &gt;/dev/null<br />
+sleep 5</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=222#respond' onclick='return addComment.moveForm("div-comment-222", "222", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-223">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/2b06302da3e14df9b89505ee0935dfbe?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://ssergeje.wordpress.com/' rel='external nofollow' class='url'>Sergei Sergejev</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/11/01 at <a href="#comment-223" title="Permanent link to this comment">0:57</a> </p>
+		<div id="div-comment-223">
+			<p>There were messages in the bug mentioned in the post that unmounting and suspending the drive works from GUI in 9.10.<br />
+I have a WD Passport and I&#8217;ll be able to answer if it works with it in a few days <img src='http://s.wordpress.com/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=223#respond' onclick='return addComment.moveForm("div-comment-223", "223", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-224">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/56a04f7a27a2777c0cf8f42786c595e3?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://www.jamescostian.com' rel='external nofollow' class='url'>James Costian</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/11/02 at <a href="#comment-224" title="Permanent link to this comment">2:17</a> </p>
+		<div id="div-comment-224">
+			<p>Just in case you want more info, I&#8217;m getting a 250GB Western Digital My Passport Essential</p>
+		<div class="reply">
+					</div>
+		</div>
+</li>
+</ul>
+</li>
+	<li class="" id="comment-225">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/2b06302da3e14df9b89505ee0935dfbe?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://ssergeje.wordpress.com/' rel='external nofollow' class='url'>Sergei Sergejev</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/11/02 at <a href="#comment-225" title="Permanent link to this comment">3:03</a> </p>
+		<div id="div-comment-225">
+			<p>Unmounting from GUI works just fine with WD Passport 160Gb and Ubuntu 9.10</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=225#respond' onclick='return addComment.moveForm("div-comment-225", "225", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-227">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/368833fe555848972787f89b8fb027ee?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Douglas</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/11/02 at <a href="#comment-227" title="Permanent link to this comment">10:14</a> </p>
+		<div id="div-comment-227">
+			<p>I saw the integrated &#8220;Safely Remove Hardware&#8221; with nautilus on 9.10. Really nice. </p>
+<p>Is it possible to have it on 9.04? Perhaps a nautilus script?</p>
+		<div class="reply">
+					</div>
+		</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+	<li class="" id="comment-230">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/7aecb4b4bd2a2aad9e6b4f05e8504b66?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Yan Li</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/11/03 at <a href="#comment-230" title="Permanent link to this comment">11:06</a> </p>
+		<div id="div-comment-230">
+			<p>I also found that GNOME 2.28 has the &#8220;eject&#8221; function now. But I can&#8217;t find detail introduction of it. Anyone has such kind of info? Thank you.</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=230#respond' onclick='return addComment.moveForm("div-comment-230", "230", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-231">
+		<div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/2b06302da3e14df9b89505ee0935dfbe?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://ssergeje.wordpress.com/' rel='external nofollow' class='url'>Sergei Sergejev</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/11/03 at <a href="#comment-231" title="Permanent link to this comment">11:37</a> </p>
+		<div id="div-comment-231">
+			<p>I only found this<br />
+<a href="https://bugzilla.gnome.org/show_bug.cgi?id=598690" rel="nofollow">https://bugzilla.gnome.org/show_bug.cgi?id=598690</a></p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=231#respond' onclick='return addComment.moveForm("div-comment-231", "231", "respond", "169")'>Reply</a>		</div>
+		</div>
+<ul class='children'>
+	<li class="" id="comment-233">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/7aecb4b4bd2a2aad9e6b4f05e8504b66?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Yan Li</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/11/03 at <a href="#comment-233" title="Permanent link to this comment">12:23</a> </p>
+		<div id="div-comment-233">
+			<p>Thank you. It&#8217;s very useful.</p>
+		<div class="reply">
+					</div>
+		</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+	<li class="" id="comment-239">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/daee026a7794257e4f435a4d18f650ed?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Jay</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2009/12/18 at <a href="#comment-239" title="Permanent link to this comment">5:55</a> </p>
+		<div id="div-comment-239">
+			<p>I also needed to add sleeps after the sdparm commands to put my WD Passport to sleep (running Kubuntu 9.10).  Thanks a lot for the script.</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=239#respond' onclick='return addComment.moveForm("div-comment-239", "239", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+	<li class="" id="comment-240">
+		<div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/3d82dd940d692cd14e8e416f51fe5fe1?s=32&amp;d=identicon&amp;r=G' class='avatar avatar-32' height='32' width='32' /></div>		<h4 class="commentauthor vcard"><span class="fn">Antti Salminen</span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2010/03/19 at <a href="#comment-240" title="Permanent link to this comment">2:03</a> </p>
+		<div id="div-comment-240">
+			<p>I ran into the same issue while looking for these scripts to make my backup drive save power and found out what was really going on. The issue is indeed exactly the same as with the hdparm bug you referenced. Both the linux command line utils that can be used to send these commands to the drive erraneously open the disk in read-write mode and it&#8217;s fixed simply by changing one line in for example sg_start. <a href="https://bugs.launchpad.net/ubuntu/+source/sdparm/+bug/444818" rel="nofollow">https://bugs.launchpad.net/ubuntu/+source/sdparm/+bug/444818</a> has more.</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=240#respond' onclick='return addComment.moveForm("div-comment-240", "240", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+	<li class="" id="comment-243">
+		<div class="avatar"></div>		<h4 class="commentauthor vcard"><span class="fn"><a href='http://www.linuxquestions.org/questions/debian-26/mounted-external-harddisk-and-suspend-811521/#post3990235' rel='external nofollow' class='url'>Mounted external harddisk and suspend</a></span> <span class="says">said,</span></h4>
+		<p class="comment-meta commentmetadata commentmeta">2010/06/02 at <a href="#comment-243" title="Permanent link to this comment">20:28</a> </p>
+		<div id="div-comment-243">
+			<p>[...] into suspend mode, which can lead to external harddisk hardware failure, see e.g. these links:  <a href="http://ssergeje.wordpress.com/2009/0...ves-in-ubuntu/" rel="nofollow">http://ssergeje.wordpress.com/2009/0&#8230;ves-in-ubuntu/</a>  or  <a href="http://elliotli.blogspot.com/2009/01...-in-linux.html" rel="nofollow">http://elliotli.blogspot.com/2009/01&#8230;-in-linux.html</a>  [...]</p>
+		<div class="reply">
+			<a rel='nofollow' class='comment-reply-link' href='/2009/08/11/unmounting-external-usb-drives-in-ubuntu/?replytocom=243#respond' onclick='return addComment.moveForm("div-comment-243", "243", "respond", "169")'>Reply</a>		</div>
+		</div>
+</li>
+	</ol>
+	
+	<div class="navigation">
+		<div class="alignleft"></div>
+		<div class="alignright"></div>
+	</div>
+
+	
+
+<div id="respond">
+<h3 id="postcomment">Post a Comment</h3>
+<div id="cancel-comment-reply"><small><a rel="nofollow" id="cancel-comment-reply-link" href="/2009/08/11/unmounting-external-usb-drives-in-ubuntu/#respond" style="display:none;">Click here to cancel reply.</a></small></div>
+
+
+<form action="http://ssergeje.wordpress.com/wp-comments-post.php" method="post" id="commentform">
+
+
+<p>
+<input type="text" name="author" id="author" value="" size="28" tabindex="1" />
+<label for="author">Name (required)</label>
+</p>
+
+<p>
+<input type="text" name="email" id="email" value="" size="28" tabindex="2" />
+<label for="email">E-mail (required)</label>
+</p>
+
+<p>
+<input type="text" name="url" id="url" value="" size="28" tabindex="3" />
+<label for="url"><abbr title="Uniform Resource Identifier">URI</abbr></label>
+</p>
+
+
+<p>
+<textarea name="comment" id="comment" cols="80" rows="10" tabindex="4"></textarea>
+</p>
+
+<p>
+<input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type='hidden' name='comment_post_ID' value='169' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>
+
+
+<input type="hidden" name="genseq" value="1282454290" />
+<p><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6"/> <label class="subscribe-label" id="subscribe-label" for="subscribe">Notify me of follow-up comments via email.</label></p><p><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;" tabindex="7"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts via email.</label></p><input type="hidden" name="sub-type" value="comment-form-text0" />
+</form>
+</div>
+	
+				
+	
+	</div>
+
+<div id="sidebar">
+<ul>
+<li id="pages-2" class="widget widget_pages"><h2 class="widgettitle">Pages</h2>
+		<ul>
+			<li class="page_item page-item-140"><a href="http://ssergeje.wordpress.com/qa/" title="QA">QA</a></li>
+		</ul>
+		</li>
+<li id="wp_tag_cloud" class="widget wp_widget_tag_cloud"><h2 class="widgettitle">Tags</h2>
+<div style="overflow:hidden"><a href='http://ssergeje.wordpress.com/tag/automated-testing/' class='tag-link-45453' title='1 topic' style='font-size: 8pt;'>automated-testing</a>
+<a href='http://ssergeje.wordpress.com/tag/blog/' class='tag-link-273' title='1 topic' style='font-size: 8pt;'>blog</a>
+<a href='http://ssergeje.wordpress.com/tag/bluepad/' class='tag-link-2696493' title='1 topic' style='font-size: 8pt;'>bluepad</a>
+<a href='http://ssergeje.wordpress.com/tag/bluetooth/' class='tag-link-31280' title='1 topic' style='font-size: 8pt;'>bluetooth</a>
+<a href='http://ssergeje.wordpress.com/tag/bugs/' class='tag-link-6354' title='2 topics' style='font-size: 13.25pt;'>bugs</a>
+<a href='http://ssergeje.wordpress.com/tag/digiphoto/' class='tag-link-601458' title='1 topic' style='font-size: 8pt;'>digiphoto</a>
+<a href='http://ssergeje.wordpress.com/tag/firefox/' class='tag-link-45' title='1 topic' style='font-size: 8pt;'>firefox</a>
+<a href='http://ssergeje.wordpress.com/tag/it/' class='tag-link-3072' title='1 topic' style='font-size: 8pt;'>it</a>
+<a href='http://ssergeje.wordpress.com/tag/laptop/' class='tag-link-1821' title='2 topics' style='font-size: 13.25pt;'>laptop</a>
+<a href='http://ssergeje.wordpress.com/tag/linux/' class='tag-link-610' title='2 topics' style='font-size: 13.25pt;'>linux</a>
+<a href='http://ssergeje.wordpress.com/tag/linux-laptop/' class='tag-link-1754977' title='1 topic' style='font-size: 8pt;'>linux-laptop</a>
+<a href='http://ssergeje.wordpress.com/tag/nokia/' class='tag-link-3664' title='2 topics' style='font-size: 13.25pt;'>nokia</a>
+<a href='http://ssergeje.wordpress.com/tag/open-source/' class='tag-link-25' title='3 topics' style='font-size: 16.75pt;'>open source</a>
+<a href='http://ssergeje.wordpress.com/tag/qa/' class='tag-link-8841' title='2 topics' style='font-size: 13.25pt;'>qa</a>
+<a href='http://ssergeje.wordpress.com/tag/selenium/' class='tag-link-111899' title='1 topic' style='font-size: 8pt;'>Selenium</a>
+<a href='http://ssergeje.wordpress.com/tag/studies/' class='tag-link-6976' title='1 topic' style='font-size: 8pt;'>studies</a>
+<a href='http://ssergeje.wordpress.com/tag/ubuntu/' class='tag-link-255' title='5 topics' style='font-size: 22pt;'>ubuntu</a>
+<a href='http://ssergeje.wordpress.com/tag/wammu/' class='tag-link-643451' title='1 topic' style='font-size: 8pt;'>wammu</a></div></li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">Archives</h2>
+		<ul>
+			<li><a href='http://ssergeje.wordpress.com/2010/04/' title='April 2010'>April 2010</a>&nbsp;(1)</li>
+	<li><a href='http://ssergeje.wordpress.com/2009/10/' title='October 2009'>October 2009</a>&nbsp;(1)</li>
+	<li><a href='http://ssergeje.wordpress.com/2009/08/' title='August 2009'>August 2009</a>&nbsp;(1)</li>
+	<li><a href='http://ssergeje.wordpress.com/2009/01/' title='January 2009'>January 2009</a>&nbsp;(1)</li>
+	<li><a href='http://ssergeje.wordpress.com/2008/11/' title='November 2008'>November 2008</a>&nbsp;(2)</li>
+	<li><a href='http://ssergeje.wordpress.com/2008/10/' title='October 2008'>October 2008</a>&nbsp;(1)</li>
+	<li><a href='http://ssergeje.wordpress.com/2008/09/' title='September 2008'>September 2008</a>&nbsp;(2)</li>
+	<li><a href='http://ssergeje.wordpress.com/2008/08/' title='August 2008'>August 2008</a>&nbsp;(1)</li>
+	<li><a href='http://ssergeje.wordpress.com/2008/07/' title='July 2008'>July 2008</a>&nbsp;(1)</li>
+	<li><a href='http://ssergeje.wordpress.com/2008/04/' title='April 2008'>April 2008</a>&nbsp;(1)</li>
+	<li><a href='http://ssergeje.wordpress.com/2007/02/' title='February 2007'>February 2007</a>&nbsp;(3)</li>
+	<li><a href='http://ssergeje.wordpress.com/2007/01/' title='January 2007'>January 2007</a>&nbsp;(5)</li>
+	<li><a href='http://ssergeje.wordpress.com/2006/12/' title='December 2006'>December 2006</a>&nbsp;(2)</li>
+	<li><a href='http://ssergeje.wordpress.com/2006/09/' title='September 2006'>September 2006</a>&nbsp;(2)</li>
+	<li><a href='http://ssergeje.wordpress.com/2006/08/' title='August 2006'>August 2006</a>&nbsp;(2)</li>
+	<li><a href='http://ssergeje.wordpress.com/2006/04/' title='April 2006'>April 2006</a>&nbsp;(1)</li>
+		</ul>
+</li>
+		<li id="top-posts" class="widget widget_stats_topposts">			<h2 class="widgettitle">Top Posts</h2>
+			<ul><li><a href='http://ssergeje.wordpress.com/2009/08/11/unmounting-external-usb-drives-in-ubuntu/'>Unmounting external USB drives in Ubuntu 9.04</a></li><li><a href='http://ssergeje.wordpress.com/2008/09/19/nokia-3120-classic-and-ubuntu-804-linux/'>Nokia 3120 classic and Ubuntu 8.04 linux (updated)</a></li><li><a href='http://ssergeje.wordpress.com/2008/07/25/jhead-exif-editor/'>jhead EXIF editor</a></li><li><a href='http://ssergeje.wordpress.com/2007/01/02/wine-linux-ie4linux/'>WINE &lt;&gt; Linux &lt;&gt; IE4Linux</a></li><li><a href='http://ssergeje.wordpress.com/2008/10/01/bug-in-nokia-alarm/'>bug in Nokia 3120 Classic's alarm</a></li></ul>		</li>
+		<li id="top-clicks" class="widget widget_stats_topclicks">			<h2 class="widgettitle">Top Clicks</h2>
+			<ul><li><a href='http://assente.vega9.com/?q=it/how_to_manage_exif_xmp_metadata_on_linux_gnome_kde' rel='nofollow'>assente.vega9.com/?q=it/h&#8230;</a></li><li><a href='-' rel='nofollow'>-</a></li></ul>		</li>
+<li id="text-194767451" class="widget widget_text"><h2 class="widgettitle">Links</h2>
+			<div class="textwidget"><a href="https://launchpad.net/~ssergeje">My Launchpad</a><br />
+<a href="http://www.testijateliit.ee/">Estonian Testing Board</a><br />
+<a href="http://seleniumhq.org/">Selenium HQ</a><br />
+<a href="http://www.openqa.org">Open QA</a><br />
+<a href="http://enos.itcollege.ee/~ssergeje">My diploma</a><br />
+<a href="http://osnews.com/">OSnews</a><br />
+<a href="http://www.linkedin.com/pub/sergei-sergejev/12/112/401">
+          <img src="http://www.linkedin.com/img/webpromo/btn_profile_greytxt_80x15.gif" width="80" height="15" border="0" alt="View Sergei Sergejev's profile on LinkedIn">
+    </a>
+</div>
+		</li>
+<li id="text-194755251" class="widget widget_text"><h2 class="widgettitle">Z-Counter</h2>
+			<div class="textwidget"><div>
+<a href="http://counter.zone.ee/stats.php3?rid=6oB3938m&amp;ref=">
+<img src="http://counter.zone.ee/count.php3?cid=6oB3938m&amp;ref=" alt="Zone Counter" style="border:none;" />
+</a></div>
+		</li>
+		<li id="blog-stats" class="widget widget_statscounter">			<h2 class="widgettitle">Blog Stats</h2>
+			<ul>
+			<li>13,225 hits</li>
+			</ul>
+		</li>
+<li id="text-196657781" class="widget widget_text"><h2 class="widgettitle">Online</h2>
+			<div class="textwidget"><a href="http://whos.amung.us/show/tz3bpkoo"><img src="http://whos.amung.us/widget/tz3bpkoo.png" alt="web counter" width="81" height="29" border="0" /></a> </div>
+		</li>
+<li id="text-222771501" class="widget widget_text"><h2 class="widgettitle">Hit locations</h2>
+			<div class="textwidget"><a href="http://www4.clustrmaps.com/user/0de66344"><img src="http://www4.clustrmaps.com/stats/maps-no_clusters/ssergeje.wordpress.com-thumb.jpg" alt="Locations of visitors to this page" />
+</a>
+</div>
+		</li>
+<li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">Meta</h2>
+			<ul>
+			<li><a href="http://ssergeje.wordpress.com/wp-login.php?action=register">Register</a></li>			<li><a href="http://ssergeje.wordpress.com/wp-login.php">Log in</a></li>
+			<li><a href="http://ssergeje.wordpress.com/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://ssergeje.wordpress.com/comments/feed/" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.com/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.com</a></li>
+						</ul>
+</li>
+</ul>
+</div>
+
+	<div id="footer">
+		<p>Theme: Dusk by <a href="http://beccary.com" rel="designer">Beccary</a>. <a href="http://wordpress.com/" rel="generator">Blog at WordPress.com</a>.</p>
+	</div>
+
+</div>
+
+
+<script type="text/javascript" src="http://wordpresscom.skimlinks.com/api/wordpress.js"></script>
+<script type="text/javascript">
+var skimlinks_pub_id = "725X1342";
+var skimlinks_sitename = 'ssergeje.wordpress.com';
+var skimlinks_domain = "go2.wordpress.com";
+skimlinks();
+</script>
+<script type="text/javascript">_qoptions={qacct:'p-18-mFEk4J448M',labels:'language.en'};</script>
+<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+<noscript><p><img class="robots-nocontent" src="http://pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=language.en" style="display:none" height="1" width="1" alt="" /></p></noscript>
+<script type='text/javascript'>_acseed='Nm01fCNhbSRyWGlKSyBjJVFRfiZ5bS5Gbz9RclJzZDpjWWhbTVNFQi1aI1F+US8kUX5KaTE+SnwxSilxV0dWOloubGBpYDI8XnlyK1sgX1VdTHBUK2V5LnIkTXBbIERbL0NOeU12dS51TF1oP1IwSkBMeT5WS05Dbn0wVXJdK25iUV8v';</script>
+<script type="text/javascript" src="http://b.scorecardresearch.com/beacon.js"></script><script type="text/javascript">try{COMSCORE.beacon({c1:2,c2:7518284});}catch(e){}</script><noscript><p class="robots-nocontent"><img src="http://b.scorecardresearch.com/p?cj=1c1=2&#038;c2=7518284" alt="" style="display:none" width="1" height="1" /></p></noscript><script src="http://s.stats.wordpress.com/w.js?19" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'197874','v':'wpcom','user_id':'0','post':'169','subd':'ssergeje'});
+ex_go({'crypt':'RDZ8LFkxbXF5TGl8SXRTVlAmV1ZbWnF6b103LTBFJSxNYXFPSDBvLVFUOGZiYW5PQTFYLmdBc1Fyb1VfY3AzeiU3X25vfHZhRk9ieHlaSEd2aCZPL1N0TD1ud0NjMXkrPS5lUUZQc0RxckdlOXdkRUN4P3BFOD0yZkUrT0NJVkpQLk9MZk5SN1U5ViZIaVU3dkNEUHIreXF4bXRscXgsWjYuTTZSVDVsczJMcTk/V3NYWHBPRER2dGlSRjlVR093ODVNLz9aLWJWdy5YfEUxSC5PVlBKajRJY1tEVGt5JXpYcGtzfDFfTjk9LXlMM1l6b1N+VXIydUNSYk5jbktyV2FQa0pLNyxvQ1piVGVJVmg5NUpKQXguQmwxS29xczVhS2F6PWZObyVRcnZOMSYwSSU4eFMsZm1vWEhhM3FVQVllM3ZILzZoaF0='});
+addLoadEvent(function(){linktracker_init('197874',169);});
+	</script>
+
+</body>
+</html>

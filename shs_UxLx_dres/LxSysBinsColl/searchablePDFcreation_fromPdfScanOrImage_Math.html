@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<meta name="robots" content="follow,index,all" />
+<meta name="author" content="Konrad Voelkel" />
+<meta name="revisit-after" content="1 days" />
+<meta name="revisit" content="after 1 days" />
+<meta name="copyright" content="(c) 2000-2010 by Konrad Voelkel" />
+<meta name="language" content="en" />
+<meta name="DC.Language" content="en" />
+<meta name="DC.Type" content="Text" />
+<meta name="DC.Format" content="text/html" />
+<link rel="stylesheet" type="text/css" href="http://static.konradvoelkel.de/theme/style.css" />
+<link rel="stylesheet" media="print" type="text/css" href="http://static.konradvoelkel.de/theme/print.css" />
+<link rel="alternate" type="application/rss+xml" title="everything feed" href="/feed/" />
+<link rel="alternate" type="application/rss+xml" title="math-only feed" href="/themen/math/feed/" />
+<link rel="canonical" href="http://blog.konradvoelkel.de/2010/01/linux-ocr-and-pdf-problem-solved/" />
+<link rel="pingback" href="http://blog.konradvoelkel.de/xmlrpc.php" />
+<link rel="shortcut icon" href="http://static.konradvoelkel.de/theme/favicon.ico" type="image/x-icon"/>
+<link rel='index' title='Konrad Voelkel&#039;s Blog &#8211; Mathemagically' href='http://blog.konradvoelkel.de/' />
+<link rel='start' title='Karamillo' href='http://blog.konradvoelkel.de/2008/09/karamillo/' />
+<link rel='prev' title='... recently started ...' href='http://blog.konradvoelkel.de/2010/01/recently-started/' />
+<link rel='next' title='Managing photos' href='http://blog.konradvoelkel.de/2010/01/how-to-manage-photos/' />
+<meta name="generator" content="WordPress 3.2.1" />
+<link rel='canonical' href='http://blog.konradvoelkel.de/2010/01/linux-ocr-and-pdf-problem-solved/' />
+<link rel='shortlink' href='http://blog.konradvoelkel.de/?p=879' />
+<meta name="description" content="Producing a full-text searchable and indexable PDF from ugly book-scans is easy with Linux now, with OCR software." />
+<meta name="abstract" content="Producing a full-text searchable and indexable PDF from ugly book-scans is easy with Linux now, with OCR software." />
+<meta name="keywords" content="voelkel, konrad, freiburg, paris, math, blog, linux, metadata, note-taking, ocr, pdf, software" />
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+  {lang: 'en-GB'}
+</script>
+<title>Linux, OCR and PDF – problem solved  &#8211;  Konrad Voelkel&#039;s Blog &#8211; Mathemagically</title>
+</head>
+<body>
+<div id="bodyinner">
+<div id="sitewidth">
+<div id="top">
+<h1>Linux, OCR and PDF – problem solved  &#8211;  Konrad Voelkel&#039;s Blog &#8211; Mathemagically</h1>
+<p><strong>mathematics and other sciences, useful software and some philosophy</strong></p>
+<p class="hide">Jump to: <a accesskey="1" href="#content">Content</a> | <a accesskey="2" href="#sidebar">Navigation</a> | <a accesskey="3" href="#footer">Footer</a></p>
+</div>
+<div id="wrap">
+<div id="content">
+<h2>Linux, OCR and PDF – problem solved</h2>
+<p class="timestamp"><strong>19 January, 2010 in the category <a href="http://blog.konradvoelkel.de/themen/lang/english/" title="View all posts in english" rel="category tag">english</a>, <a href="http://blog.konradvoelkel.de/themen/life/computer/latex/" title="View all posts in LaTeX" rel="category tag">LaTeX</a>, <a href="http://blog.konradvoelkel.de/themen/life/photos/" title="View all posts in photos" rel="category tag">photos</a>, <a href="http://blog.konradvoelkel.de/themen/life/computer/web/" title="View all posts in web" rel="category tag">web</a> by <a href="https://plus.google.com/104842226082961773918" rel="author">Konrad Voelkel</a>. </strong></p>
+<div class="contenttext">
+<p>Imagine you've scanned some book into a PDF file on Linux, such that every pdf-page contains two book-pages and there is a lot of additional white-space and maybe the page orientation is wrong. And, worst of all, there is no full-text search, thus no full-text indexing for desktop search engines. I consider this problem solved on Linux!<br />
+<span id="more-879"></span><br />
+In general, the first thing you'll have to do is to convert the PDF (or, basically any file format you've scanned to, like TIFF or PNG or DjVu ...) into the <a href="http://en.wikipedia.org/wiki/HOCR">hOCR</a> format, which is the text extracted, in a XHTML file with layout annotations. Then you can apply a program to convert the hOCR file into a searchable PDF again.</p>
+<p>There are several approaches to solve this problem (however, you can <a href="http://www.konradvoelkel.de/download/pdfocr.sh">download my solution directly</a>, if you wish). To extract the text from a scan, you have to use OCR software such as <a href="http://www.gocr.de/">gocr</a>, <a href="http://www.gnu.org/software/ocrad/">ocrad</a>, <a href="http://code.google.com/p/tesseract-ocr/">tesseract</a> or <a href="https://launchpad.net/cuneiform-linux">cuneiform</a>. I have achieved the best results with tesseract and the worst with gocr, however the most convenient way to produce hOCR files was using <a href="https://launchpad.net/cuneiform-linux">Cuneiform</a>. Cuneiform is a Russian software, once one of the best proprietary OCR software in the world. Now they have ported it to Linux.<br />
+In future (maybe two years), the project <a href="http://code.google.com/p/ocropus/">OCRopus</a> will have a nice UI, then this may be another good way to OCR with Linux.</p>
+<p>To convert a hOCR file into a searchable, indexable PDF, I only know of <a href="http://www.exactcode.de/site/open_source/exactimage/hocr2pdf/">hocr2pdf</a> from the <a href="http://www.exactcode.de/site/open_source/exactimage/">ExactImage</a> package.</p>
+<p>The best results were found if each pdf-page is cropped and split in two, such that the files processed by the OCR program are PNG-files that contain exactly one book-page without additional stuff (graphics are OK). To do this, you need some batch-processing.</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<p>To get fast results without much work, I wrote a shell-script that calls pdf-to-image converters, OCR software and hocr2pdf in the right sequence with the right command-line options. The shell-script isn't perfect nor beautiful, but maybe you can use it to model upon it your own shell-script to suit your needs.</p>
+<p>What the script does:</p>
+<ul>
+<li>splits one pdf into many (one pdf-file per pdf-page) via <a href="http://www.accesspdf.com/pdftk/">pdftk</a></li>
+<li>converts each pdf-page into a monochrome image with 300dpi via <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a> &#038; <a href="http://www.ghostscript.com/">ghostscript</a></li>
+<li>converts each pdf-page into two images for each book-page (after rotating &#038; cropping the pdf-page appropriately) via <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a></li>
+<li>OCRs each book-page via <a href="https://launchpad.net/cuneiform-linux">Cuneiform</a></li>
+<li>converts each book-page into PDF format via <a href="http://www.exactcode.de/site/open_source/exactimage/">ExactImage</a></li>
+<li>merges all book-pages into one PDF file via <a href="http://freshmeat.net/projects/pdfjam/">pdfjam</a> (&#038; LaTeX)</li>
+<li>writes metadata (optionally) via <a href="http://www.accesspdf.com/pdftk/">pdftk</a></li>
+</ul>
+<p>So the dependencies are convert (<a href="http://www.imagemagick.org/script/index.php">ImageMagick</a>), <a href="http://www.ghostscript.com/">ghostscript</a>, <a href="http://www.accesspdf.com/pdftk/">pdftk</a>, <a href="http://freshmeat.net/projects/pdfjam/">pdfjam</a>, <a href="http://www.exactcode.de/site/open_source/exactimage/hocr2pdf/">hocr2pdf</a> (<a href="http://www.exactcode.de/site/open_source/exactimage/">ExactImage</a>) and <a href="https://launchpad.net/cuneiform-linux">cuneiform</a>. In Ubuntu, you can run <code>sudo apt-get install imagemagick ghostscript pdftk pdfjam exactimage</code> to get the most dependencies. Cuneiform, however, must be installed by hand (grab the .tar.bz2 file from their <a href="https://launchpad.net/cuneiform-linux">launchpad website</a> and read the readme.txt installation instructions; maybe run sudo apt-get install cmake).</p>
+<p>The dependency to ImageMagick could be dropped because ExactImage provides the same tools (although ExactImage is faster).</p>
+<p>There are three minor issues to discuss:</p>
+<ul>
+<li>After installing <a href="https://bugs.launchpad.net/cuneiform-linux/+bug/345033">Cuneiform, it will complain about a missing library "libpuma.so"</a> even if it's there. Solution: <code>sudo ldconfig</code></li>
+<li>If you're looking for the program hocr2pdf, it's in the debian package "exactimage".</li>
+<li>You will get many warning messages because of malformed PDFs. <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=393192">This is not really a problem</a> and will be fixed in future versions of pdftk.</li>
+</ul>
+<p>You can either <a href="http://www.konradvoelkel.de/download/pdfocr.sh">download the script to make PDFs searchable and indexable under Linux here</a> or copy&#038;paste the code from below:<br />
+<code>#!/bin/bash<br />
+echo "usage: pdfocr.sh document.pdf orientation split left top right bottom lang author title"<br />
+# where orientation is one of 0,1,2,3, meaning the amount of rotation by 90°<br />
+# and split is either 0 (already single-paged) or 1 (2 book-pages per pdf-page)<br />
+# and (left top right bottom) are the coordinates to crop (after rotation!)<br />
+# and lang is a language as in "cuneiform -l".<br />
+# and author,title are used for the PDF metadata<br />
+# all values relative to a resolution of 300dpi<br />
+#<br />
+# usage examples:<br />
+# ./pdfocr.sh SomeFile.pdf 0 0 0 0 2500 2000 ger SomeAuthor SomeTitle<br />
+# will process a PDF with one page per pdf-page, cropping to width 2500 and height 2000<br />
+pdftk "$1" burst dont_ask<br />
+for f in pg_*.pdf<br />
+do<br />
+echo "pre-processing $f ..."<br />
+convert -quiet -rotate $[90*$2] -monochrome -normalize -density 300 "$f" "$f.png"<br />
+convert -quiet -crop $6x$7+$4+$5 "$f.png" "$f.png"<br />
+if [ "1" = "$3" ];<br />
+then<br />
+    convert -quiet -crop $[$6/2]x$7+0+0 "$f.png" "$f.1.png"<br />
+    convert -quiet -crop 0x$7+$[$6/2]+0 "$f.png" "$f.2.png"<br />
+    rm -f "$f.png"<br />
+else<br />
+    echo no splitting<br />
+fi<br />
+rm -f "$f"<br />
+done<br />
+for f in pg_*.png<br />
+do<br />
+echo "processing $f ..."<br />
+convert "$f" "$f.bmp"<br />
+cuneiform -l $8 -f hocr -o "$f.hocr" "$f.bmp"<br />
+convert -blur 0.4 "$f" "$f.bmp"<br />
+hocr2pdf -i "$f.bmp" -s -o "$f.pdf" < "$f.hocr"<br />
+rm -f "$f" "$f.bmp" "$f.hocr"<br />
+done<br />
+echo "InfoKey: Author" > in.info<br />
+echo "InfoValue: $9" >> in.info<br />
+echo "InfoKey: Title" >> in.info<br />
+echo "InfoValue: $10" >> in.info<br />
+echo "InfoKey: Creator" >> in.info<br />
+echo "InfoValue: PDF OCR scan script" >> in.info<br />
+pdfjoin --fitpaper --tidy --outfile "$1.ocr1.pdf" "pg_*.png.pdf"<br />
+rm -f pg_*.png.pdf<br />
+pdftk "$1.ocr1.pdf" update_info doc_data.txt output "$1.ocr2.pdf"<br />
+pdftk "$1.ocr2.pdf" update_info in.info output "$1-ocr.pdf"<br />
+rm -f "$1.ocr1.pdf" "$1.ocr2.pdf" doc_data.txt in.info<br />
+rm -rf pg_*_files</code></p>
+<p>And if you think something with this code is wrong, not good or ugly, you can write me an email with corrections.</p>
+<p>Happy scanning &#038; searching in PDFs!</p>
+<div id="g_plus_one" size="medium"></div>
+<p class="postmeta">Tags: <a href="http://blog.konradvoelkel.de/keywords/linux/" rel="tag">linux</a>, <a href="http://blog.konradvoelkel.de/keywords/metadata/" rel="tag">metadata</a>, <a href="http://blog.konradvoelkel.de/keywords/note-taking/" rel="tag">note-taking</a>, <a href="http://blog.konradvoelkel.de/keywords/ocr/" rel="tag">ocr</a>, <a href="http://blog.konradvoelkel.de/keywords/pdf/" rel="tag">pdf</a>, <a href="http://blog.konradvoelkel.de/keywords/software/" rel="tag">software</a></p></div>
+<div class="postpagesnav">
+<div class="older">&laquo; <a href="http://blog.konradvoelkel.de/2010/01/recently-started/" rel="prev">... recently started ...</a></div>
+<div class="newer"><a href="http://blog.konradvoelkel.de/2010/01/how-to-manage-photos/" rel="next">Managing photos</a> &raquo;</div>
+<br class="clear" />
+</div>
+
+<h2 class="archiveheader" id="comments">Comments</h2>
+
+
+<div class="comment">
+<div class="gravatarside"></div>
+<p class="commenticon">
+<strong>Pingback</strong> by <strong><a href="http://blog.konradvoelkel.de/2010/01/how-to-manage-the-papers-metadata/">&raquo; Managing the paper&#8217;s metadata (Konrad Voelkel&#039;s Blog)</a></strong>
+<br />
+2010-01-25, 19:09</p>
+<p>[...] The general solution to get full-text search and indexable documents (with Linux) is to look at another article on this blog: Linux, OCR and PDF &#8211; problem solved [...]</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/9dde81de5f1b300f2d5f7b5603f9d90d?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong><a href="http://www.mj10777.eu">Mark Johnson</a></strong>
+<br />
+2010-01-27, 07:09</p>
+<p>Very nice and works very well. Would you also know of an approach that the result would be placed into a Word/OpenOffice Document?<br />
+Having one Script that could do either or both would be interesting so that the “original” pdf could be used or to change portions of the document that were NOT recognized.</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://0.gravatar.com/avatar/a096239ae4420a1ab902b88cfc0f7498?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong><a href="http://blog.konradvoelkel.de">Konrad</a></strong>
+<br />
+2010-01-27, 07:13</p>
+<p>Have you tried to skip the step "hocr2pdf", and looked instead at the .hocr files with a webbrowser? These are actually HTML files, so you could try to use the HTML-import feature of your Office application.</p>
+<p>But I haven't tried this yet and I guess the result won't be very usable. For the purpose of editing text, I would use a simpler approach, not using hOCR but directly converting the pdf-files to pure text files with Tesseract. Scripts to do this can be found elsewhere.</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/f497f70793649b7612ca5bfaada5d7a1?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Steve</strong>
+<br />
+2010-10-01, 06:29</p>
+<p>I have spent the last few hours doing some heavy scanning and OCRing and I found your page. First of all, thanks a lot - I didn't use your script, but I semi-manually performed the same steps, and it was a big help.</p>
+<p>Secondly, I wanted to make an observation. I might have side-stepped this problem if I'd used your script, but I am not sure, and having finally figured it out I had to share this somewhere. <img src='http://blog.konradvoelkel.de/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' />  If your pages are monochrome, it's important that they are in a 1bpp file format when submitted to hocr2pdf - it's not smart enough (and I can't really blame it) to notice this by itself. I suspect your script works fine - I hit this because my inputs were PDFs produced by gscan2pdf, so I burst them into individual files for cleanup and OCR using pdftoppm, which produced 24bpp output. As a result my PDF file ballooned from 15MB before bursting-and-OCRing to 114MB when reassembled. Converting the image files to PBM before giving them to hocr2pdf reduced my final PDF size to 14MB. (I assume I saved some extra space as a result of cleaning up noise on the bitmaps after bursting.)</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/9e509b753a11d15890a39a01c6f5aa15?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Art Westin</strong>
+<br />
+2010-12-23, 13:21</p>
+<p>Thanks for an excellent and detailed solution to this problem.</p>
+<p>The next problem is a command-line search facility. I have a few hundred OCR-ed PDF files that I would like to search with regex strings, and have some program return a list of filename and page # combinations where the search string was found.</p>
+<p>Does such a program exist?</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/b6e014303cb62ef5f9f15edc82d88537?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>fungiblename</strong>
+<br />
+2011-01-07, 11:24</p>
+<p>This is fantastic, thank you!</p>
+<p>I've been waiting for years to do be able to do something like this without making files immense (there is a program on the Mac that I have used, but it bloats the files 5-10x and isn't very accurate). </p>
+<p>I adapted this script to use Tesseract 3.00 for English text on Ubuntu 10.04.1: <a href="http://wwww.ubuntuforums.org/showpost.php?p=10327088&#038;postcount=5" rel="nofollow">http://wwww.ubuntuforums.org/showpost.php?p=10327088&#038;postcount=5</a> </p>
+<p>The accuracy is pretty good, too, at least in English.</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"></div>
+<p class="commenticon">
+<strong>Pingback</strong> by <strong><a href="http://blogs.gnome.org/muelli/2011/02/ocring-a-scanned-book/">OCRing a scanned book &laquo; muellis blog</a></strong>
+<br />
+2011-02-10, 15:35</p>
+<p>[...] Some custom script [...]</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/bed89fd965c8e7a56eee17d3e0d58a0b?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>bn</strong>
+<br />
+2011-02-20, 03:53</p>
+<p>Hi there, </p>
+<p>I have a general problem with the ocr-ing step.<br />
+I have here a perfectly readable page that stubbornly resists to any attempt of being ocred on either linux or mac osx, using your proposal (cuneiform), but also tesseract, and ocroscript.<br />
+I tried to increase the resolution up to 1200 in the convert to png step, but to no avail.<br />
+The ocr step either fails completely (mac osx, segmentation fault in cuneiform) or else only produces gibberish.<br />
+Adobe acrobat professional perfectly ocrs this file.<br />
+Maybe you have an idea how to tweak some of you parameters to get this thing ocred? You can find the file here:<br />
+files.me.com/bjrnfrdnnd2/3sg35f</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://0.gravatar.com/avatar/a096239ae4420a1ab902b88cfc0f7498?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong><a href="http://blog.konradvoelkel.de">Konrad</a></strong>
+<br />
+2011-02-20, 14:49</p>
+<p>I looked at your file.</p>
+<p>With 1200 dpi, a cuneiform bug prevents OCRing, because the file is too large. See <a href="https://bugs.launchpad.net/cuneiform-linux/+bug/349110" rel="nofollow">https://bugs.launchpad.net/cuneiform-linux/+bug/349110</a></p>
+<p>Your problem seems to be related to font rendering issues. Using the -monochrome switch in convert produces an image with bad fonts which are unlikely to be OCRed properly. I think it has nothing to do with the rendering resolution (however, I guess 600dpi is fine for your data).</p>
+<p>Using GIMP, I converted the image to a high-contrast monochrome image which worked well in cuneiform (at 300 dpi). The OCR quality was not perfect, but tuning the parameters you'll get much better results.</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/bed89fd965c8e7a56eee17d3e0d58a0b?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>bn</strong>
+<br />
+2011-02-20, 19:34</p>
+<p>Thanks for your message.<br />
+I tried also 300, 600 and 1200 dpi using your script, but none worked. Your solution seems logical (using high contrast), but using gimp means that you leave the world of batch processing (and you wouldn't want to start gimp for every one of the 100 pages that you want to scan, would you?).<br />
+So while gimp certainly is a workaround for one page, do you have an idea which of the parameters in the convert step in your script to tune in order to get cuneiform to work on the file?</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://0.gravatar.com/avatar/a096239ae4420a1ab902b88cfc0f7498?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong><a href="http://blog.konradvoelkel.de">Konrad</a></strong>
+<br />
+2011-02-20, 20:12</p>
+<p>Gimp can be used for batch-processing and convert has lots of options which might help as well. Just take a look at their manpages ("man convert") or google for more documentation.</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/bed89fd965c8e7a56eee17d3e0d58a0b?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>bn</strong>
+<br />
+2011-02-20, 20:39</p>
+<p>I actually already tried that: using edge detection, threshold, sharpening with convert. I never succeeded producing anything that cuneiform would be able to ocr. I was even unable to find any suitable gimp operation that would produce an image that cuneiform would be able to ocr.<br />
+So if you still remember what your successful gimp operation was, please tell me.</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/b0e6c760bd77d9697a6c388869bb4df8?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Drew</strong>
+<br />
+2011-06-09, 05:32</p>
+<p>I get<br />
+"   pdfjam ERROR: pg_*.png.pdf not found"</p>
+<p>Any idea?</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://0.gravatar.com/avatar/a096239ae4420a1ab902b88cfc0f7498?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong><a href="http://blog.konradvoelkel.de">Konrad</a></strong>
+<br />
+2011-06-09, 11:14</p>
+<p>@Drew<br />
+it seems the hocr2pdf step failed. Can you check manually, which step fails? Maybe I should add you should execute this script in a shell, in the folder where your file is.<br />
+Anyway, I have no idea what's wrong - try debugging <img src='http://blog.konradvoelkel.de/wp-includes/images/smilies/icon_wink.gif' alt=';-)' class='wp-smiley' /> </p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/79a5d8865de8fc964630919b390dd09a?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Paulo Muggler</strong>
+<br />
+2011-06-15, 18:34</p>
+<p>@Drew<br />
+If you edit the shell script at line 54, removing the quotation marks around "pg_*.png.pdf", that is, change "pg_*.png.pdf" to pg_*.png.pdf the filename expansion should work properly. At least it worked for me, I had the same problem. But, after that, I'm getting the following error on the pdfjoin call :<br />
+" pdfjam: Effective call for this run of pdfjam:<br />
+          /usr/bin/pdfjam --fitpaper 'true' --rotateoversize 'true' --suffix joined --fitpaper '--no-tidy' --outfile 0010775_Manual_Eletronico_H61H2_M2_RevC.pdf.ocr1.pdf -- pg_0001.pdf.png.pdf - pg_0002.pdf.png.pdf - pg_0003.pdf.png.pdf - pg_0004.pdf.png.pdf - pg_0005.pdf.png.pdf - pg_0006.pdf.png.pdf - pg_0007.pdf.png.pdf - pg_0008.pdf.png.pdf - pg_0009.pdf.png.pdf - pg_0010.pdf.png.pdf - pg_0011.pdf.png.pdf - pg_0012.pdf.png.pdf - pg_0013.pdf.png.pdf - pg_0014.pdf.png.pdf - pg_0015.pdf.png.pdf - pg_0016.pdf.png.pdf - pg_0017.pdf.png.pdf - pg_0018.pdf.png.pdf - pg_0019.pdf.png.pdf - pg_0020.pdf.png.pdf - pg_0021.pdf.png.pdf - pg_0022.pdf.png.pdf - pg_0023.pdf.png.pdf - pg_0024.pdf.png.pdf - pg_0025.pdf.png.pdf - pg_0026.pdf.png.pdf - pg_0027.pdf.png.pdf - pg_0028.pdf.png.pdf -<br />
+  pdfjam: Calling pdflatex...<br />
+  pdfjam: FAILED.<br />
+          The call to 'pdflatex' resulted in an error.<br />
+          If '--no-tidy' was used, you can examine the<br />
+          log file at<br />
+                  /var/tmp/pdfjam-sVj7OI/a.log<br />
+          to try to diagnose the problem.<br />
+  pdfjam ERROR: Output file not written<br />
+"</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://0.gravatar.com/avatar/a096239ae4420a1ab902b88cfc0f7498?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong><a href="http://blog.konradvoelkel.de">Konrad</a></strong>
+<br />
+2011-06-15, 18:47</p>
+<p>So, what does the logfile tell?</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/79a5d8865de8fc964630919b390dd09a?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Paulo Muggler</strong>
+<br />
+2011-06-15, 20:21</p>
+<p>Beats me. There is no /var/tmp/pdfjam-sVj7OI/a.log file, unfortunately.</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/5e14f8e5aff524a6b00c31a6ebd7a4d4?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>John Doe</strong>
+<br />
+2011-06-18, 20:40</p>
+<p>I had the same missing log file problem. I substituted the pdfjoin line with</p>
+<p>pdfjam --outfile $1.ocr1.pdf --a4paper pg_*.png.pdf</p>
+<p>which made the script finish successfully.</p>
+<p>I unfortunately get in spite of this no satisfying results. The resulting PDF is virtually not searchable. When running pdftotext on it, most of the text is missing and the recognized text is of poor quality.</p>
+<p>But this is not due to bad original scans! If I directly do the OCR with cuneiform on JPGs, the plain text output is superb. My problem is the conversion from recognized text to a searchable PDF.</p>
+<p>Any ideas to that?</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/138026d78824c31d0de1f08057ec0ced?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Jonas</strong>
+<br />
+2011-06-21, 00:33</p>
+<p>First a have my own version of the script. Here the right left bottom top are how many pixels to crop the image. And middle is how much to remove from the middle when splitting.<br />
+<a href="http://pastebin.com/pEx1zmCn" rel="nofollow">http://pastebin.com/pEx1zmCn</a></p>
+<p>But I have some problems with hocrpdf2. I have checked the hocr-files and they contain almost all the text. But when after hocr2pdf have executed the resulting pdf contains garbage. The lines are cropped and some text is too large.<br />
+<a href="http://peecee.dk/upload/view/313549" rel="nofollow">http://peecee.dk/upload/view/313549</a></p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/138026d78824c31d0de1f08057ec0ced?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Jonas</strong>
+<br />
+2011-06-22, 15:17</p>
+<p>Solved my problem. Apparently hocr2pdf works better with tiff.<br />
+So edited my ealier version of the script. A small benchmark with four two-side pages were 3.5x faster. Furthermore it "handles" errors where cuneiform fails to read any text and crashes and just uses the page from the original pdf.<br />
+<a href="http://pastebin.com/6ag39WnW" rel="nofollow">http://pastebin.com/6ag39WnW</a></p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/138026d78824c31d0de1f08057ec0ced?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Jonas</strong>
+<br />
+2011-07-12, 21:37</p>
+<p>New version, more use of ghostscript.<br />
+<a href="http://pastebin.com/FKz6LRs7" rel="nofollow">http://pastebin.com/FKz6LRs7</a></p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/febe519a63e24afdc75d95891aed5180?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>werner</strong>
+<br />
+2011-09-12, 04:39</p>
+<p>I search a program which adjust = rotate etc scanned text pages automatically, i.e. analyse the scan for the best rotation angle and for the best trapezoidal correction of each scanned page.  Such a solution should exist, as google's scans of old books always are corrected very good for these problems.</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/d0f17838e4f43ba71af0f812b42eb65e?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Hooloovoo</strong>
+<br />
+2011-09-28, 21:31</p>
+<p>I'm hopeful that this feature will be built into OCRopus directly and better:<br />
+<a href="http://code.google.com/p/ocropus/issues/detail?id=146&#038;q=searchable%20pdf#makechanges" rel="nofollow">http://code.google.com/p/ocropus/issues/detail?id=146&#038;q=searchable%20pdf#makechanges</a><br />
+Adobe Acrobat (and our printers at work) can take a PDF scan and 'hide' OCR text behind the words, so that it looks like the scan, but lets you search or select text from the OCR layer. This is what I'm really wanting.</p>
+<p>I haven't tried it yet, but my reading of your script is that it will only show the OCR layer in the resulting PDF, rather than the scan with the OCR hidden behind. Is that correct?</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://0.gravatar.com/avatar/cc9cc8ee5fa3ba5844dfd0951017369f?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong><a href="http://blog.konradvoelkel.de/">Konrad</a></strong>
+<br />
+2011-09-28, 21:39</p>
+<p>The script does the same, i.e. "hiding" the OCRed text behind an image of the scanned page. I hope OCRopus will supersede something like my script soon <img src='http://blog.konradvoelkel.de/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://0.gravatar.com/avatar/ab3b0d461dfbed5963720f05c7a5475b?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Andrew Slack</strong>
+<br />
+2012-02-08, 16:07</p>
+<p>Hope this is of use to someone - I make extensive extensive use of creating PDFs from scanned OCRed images, and though I would rather use open source I simply haven't found any of the options perform well enough. There are however two solutions I'd recommend that work under linux (with Wine or Crossover), even if they're not open source. The first is PDF XChange Viewer from Tracker (portable and installable versions) which works well under WINE. It does occasionally crash if you move too quickly through a large PDF for a few hundred pages by pressing page down but otherwise seems rock solid. Its latest version has OCR (hidden but aligned text layer under image) built in, and remains free (Beer). The other is very much not free (beer) but it is really really effective, that is ReadIris (I have the corporate edition), which although they don't support it for linux in any way runs perfectly well under Crossover (I've OCRed tens of thousands of pages with no crashes) and produces very compact PDFs.</p>
+<p>I keep watching the open source options - when they get close I'll be thrilled to switch, but not got there yet for me.</p>
+<p>One other extremely useful tool, potentially, is Infix PDF Editor (also works in Wine) - its killer feature for me is that it will happily edit even PDFs created with Adobe's Clearscan function, something Acrobat itself can't do, so it's very handy for correcting OCR output.</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://0.gravatar.com/avatar/ab3b0d461dfbed5963720f05c7a5475b?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Andrew Slack</strong>
+<br />
+2012-02-08, 16:08</p>
+<p>P.S. whatever OCR software you're using, results can be much improved if you have the time to run the original page images through ScanTailor (open source/multi platform) - it's voodoo magic freakily good software! (P.P.S. I have no connection with any of the above, it's just the workflow I've arrived at through several years of experimentation)</p>
+
+</div>
+
+
+<div class="comment">
+<div class="gravatarside"><img alt='' src='http://1.gravatar.com/avatar/73b09f24ba99a8db2695c6990d286f65?s=32&amp;d=&amp;r=G' class='avatar avatar-32 photo' height='32' width='32' /></div>
+<p class="commenticon">
+<strong>Comment</strong> by <strong>Franck</strong>
+<br />
+2012-02-15, 11:54</p>
+<p>Hello,<br />
+when I use your script, I obtain this : </p>
+<p>  pdfjam: This is pdfjam version 2.05.<br />
+  pdfjam: Reading any site-wide or user-specific defaults...<br />
+          (none found)<br />
+  pdfjam ERROR: pg_*.png.pdf not found<br />
+Error: Failed to open PDF file:<br />
+   2010_01_00.pdf.ocr1.pdf<br />
+Errors encountered.  No output created.<br />
+Done.  Input errors, so no output created.<br />
+Error: Failed to open PDF file:<br />
+   2010_01_00.pdf.ocr2.pdf<br />
+Errors encountered.  No output created.<br />
+Done.  Input errors, so no output created.</p>
+<p>Why ?</p>
+<p>Thanks.</p>
+
+</div>
+
+
+
+<div id="respond">
+<h2>Write a comment</h2>
+
+<form action="http://blog.konradvoelkel.de/wp-comments-post.php" method="post" id="commentform">
+
+<p><label for="author">Name:</label><br />
+<input type="text" name="author" id="author" value="" tabindex="1" /></p>
+<p><label for="email">E-mail:</label><br />
+<input type="text" name="email" id="email" value="" tabindex="2" /></p>
+<p><label for="url">URL:</label><br />
+<input type="text" name="url" id="url" value="" tabindex="3" /></p>
+
+<p><label for="comment">Message:</label><br />
+<textarea name="comment" id="comment" cols="45" rows="4" tabindex="4"></textarea></p>
+<p><input type="hidden" name="comment_post_ID" value="879" />
+<input type="submit" name="submit" value="Submit!" class="button" tabindex="5" /></p>
+<p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="4037f43ef8" /></p></p>
+</form>
+
+</div>
+
+</div>
+
+<div id="topnav">
+<h2 class="hide">Quicknav</h2>
+<ul>
+	<li><a rel="nofollow" href="http://blog.konradvoelkel.de/sitemap/articles/" title="Articles">Articles</a></li><li> | </li>
+	<li><a rel="nofollow" href="http://blog.konradvoelkel.de/sitemap/" title="Sitemap">Sitemap</a></li><li> | </li>
+	<li><a rel="nofollow" href="http://blog.konradvoelkel.de/homepage/contact/" title="Contact">Contact</a></li><li> | </li>
+	<li><a rel="nofollow" href="http://blog.konradvoelkel.de/homepage/events/" title="Events">Where you've seen me</a></li><li> | </li>
+	<li><a rel="nofollow" href="http://blog.konradvoelkel.de/homepage/impressum/" title="Impressum">Impressum</a></li>
+</ul>
+</div>
+
+<div id="sidebar">
+<a href="http://blog.konradvoelkel.de/2010/01/linux-ocr-and-pdf-problem-solved/" rel="nofollow" title="Konrad Voelkel"><img src="/wp-content/uploads/konrad-voelkel-face-150x150.jpg" alt="Konrad Voelkel" width="150" height="150" id="unique-img" /></a>
+
+<ul>
+<li><a id="link-cat-math" href="/themen/math/" rel="nofollow" title="Mathematical articles on Konrad Voelkel's Blog">Mathematics</a></li>
+<li><a id="link-cat-en" href="/" rel="nofollow" title="All articles on Konrad Voelkel's Blog">Everything</a></li>
+</ul>
+
+<ul>
+<li>
+<form method="get" id="searchform" action="http://blog.konradvoelkel.de/">
+  <div>
+    <input type="text" value="" name="s" id="s" />
+    <input type="submit" id="searchsubmit" value="Search" />
+  </div>
+</form>
+</li>
+</ul>
+
+
+<br class="clear" />
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="license" class="splitleft">
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/de/">
+<img alt="Creative Commons License" style="float:left; margin-right:10px;" src="http://static.konradvoelkel.de/theme/cc-by-nc-3-0-de-65x22.png" width="65" height="22" />
+</a><p><a href="http://blog.konradvoelkel.de" rel="cc:attributionURL">content on Konrad Voelkel&#039;s Blog &#8211; Mathemagically</a> is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/de/deed.en"><abbr title="Creative Commons Attribution-Noncommercial 3.0 License">CC-BY-NC 3.0</abbr></a>, if not indicated otherwise.</p>
+</div>
+<div id="copyright" class="splitright">
+<span class="credits"><a href="http://blog.konradvoelkel.de">&copy; 2000-2012 Konrad Voelkel&#039;s Blog &#8211; Mathemagically</a></span>
+<p class="hide clear"><a href="#top">To the top</a></p>
+</div>
+<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		"HTML-CSS": {
+			scale: 85
+		}
+	});</script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></div>
+<p id="textlink">http://blog.konradvoelkel.de/2010/01/linux-ocr-and-pdf-problem-solved/</p>
+<hr class="clear" />
+</div>
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js">{lang: 'de'}</script>
+<script type="text/javascript">/* <![CDATA[ */ document.getElementById('g_plus_one').innerHTML = '<div class="g-plusone" data-size="medium" href="http://blog.konradvoelkel.de/2010/01/linux-ocr-and-pdf-problem-solved/"></div>';/* ]]> */</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5689244-8']);
+  _gaq.push(['_setDomainName', 'konradvoelkel.de']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></body>
+</html>
