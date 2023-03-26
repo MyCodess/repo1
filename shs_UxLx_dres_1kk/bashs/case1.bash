@@ -4,7 +4,6 @@
 ## ;&	: keep.on current.loop.run with cmd.lis in the next xx)
 ## ;;&	: keep.on current.loop.run the next possible match, if any! basically eith *) then defining a always.run.cmd.list !!
 
-
 cd ${usersVarTestsDP}
 dirlist1=$(ls)
 
