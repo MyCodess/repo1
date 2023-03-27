@@ -6,6 +6,7 @@ exit 3
 #-- find broken links:
 find . -type l | (while read FN ; do test -e "$FN" || ls -ld "$FN"; done)
 
+
 ################################ NWs: ###################
 #- find all the interfaces besides loopback. ignore aliases, alternative configurations, and editor backup files ; /usr/share/doc/packages/vlan/howto.html :
 nw_interfaces=`ls ifcfg* | egrep -v '(ifcfg-lo|:)' |  egrep -v 'ifcfg-ippp[0-9]+$' | egrep 'ifcfg-[a-z0-9\.]+$' | egrep 'ifcfg-[a-z0-9]+$' | sed 's/^ifcfg-//g'`
